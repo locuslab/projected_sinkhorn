@@ -36,14 +36,9 @@ To this end, we propose adversarial examples which are close in Wasserstein dist
 an interpretation of moving pixel mass: two images that are close in Wasserstein distance require moving only 
 a small amount of pixel mass a small distance to transform one image to the other. Examples of image transformations 
 that are small in Wasserstein distance include rotations and translations. In practice, we find that adversarial examples 
-generated within this ball have perturbations that reflect the actual content and structure of the image itself. 
+generated within this ball have perturbations that reflect the actual content and structure of the image itself. For example, in the following figure we can see a Wasserstein perturbation on the top row, which doesn't attack the empty space around the six,  vs an l-infinity perturbation on the bottom row, which attacks all pixels indiscriminately. 
 
-<figure>
-<img src="https://github.com/locuslab/convex_adversarial.release/blob/master/images/perturbation.png" width="100">
-<figcaption>
-    Top: a Wasserstein adversarial example. Bottom: an l-infinity norm bounded adversarial example. 
-</figcaption>
-</figure>
+<img src="https://github.com/locuslab/projected_sinkhorn/blob/master/images/perturbation.png" width="800">
 
 We derived a fast, modified [sinkhorn iteration][sinkhorn] that solves the projection problem onto the Wasserstein ball, and restrict our transport plans to local regions to make this tractable for image datasets. The resulting algorithm is fast enough to be run as a subroutine within a PGD adversary, and furthermore within an adversarial training loop. For CIFAR10 classifiers, we find that an adversarial radius of 0.1 is enough to fool the classifier 97% of the time (equivalent to allowing the adversary to move 10\% of the mass one pixel), when restricted to local 5 by 5 transport plans. The main experimental results in the paper can be summarized in the following table. 
 
