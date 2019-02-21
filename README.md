@@ -3,13 +3,15 @@
 *A repository that implements the projected sinkhorn algorithm, and applies it towards generating Wasserstein adversarial examples. Created by [Eric Wong](https://riceric22.github.io), and joint work with Frank R. Schmidt and [Zico Kolter](http://zicokolter.com). See our paper on arXiv [here][paper].*
 
 [paper]: https://arxiv.org/abs/1711.00851
+[lambertw]: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.special.lambertw.html
+[sinkhorn]: https://arxiv.org/abs/1306.0895
 
 ## News
 + 02/21/2019 - Initial release (v0.1) with preprint. 
 
 ## What is in this repository? 
 + An implementation of the Projected Sinkhorn Iteration for images described in our [paper][paper].
-+ A PyTorch port of the `lambertw` function [(scipy documentation)][https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.special.lambertw.html]. 
++ A PyTorch port of the `lambertw` function [(scipy documentation)][lambertw]. 
 + Model weights for the models trained/evaluated in the paper. 
 + Training and evaluation code for adversarial training over the Wasserstein ball
 
@@ -19,7 +21,7 @@ You can install this these functions with
 + `projected_sinkhorn(X, Y, C, epsilon, lam, verbose=False, plan=False, objective='2norm', maxiters=50, return_objective=False)` computes the projection of `Y` onto the Wasserstein ball around `X`. 
 + `conjugate_sinkhorn(X, Y, C, epsilon, lam, verbose=False, plan=False, objective='2norm', maxiters=50, return_objective=False)` computes the support function (conjugate) of the Wasserstein ball. 
 + `wasserstein_cost(X, p=2, kernel_size=5)` creates a cost matrix for the p-Wasserstein distance for a given kernel size. 
-+ `lambertw(z0, tol=1e-5)` computes the lambertw function of `z0` on the zero branch. The code is a direct port of the zero branch of the [scipy version][https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.special.lambertw.html]. 
++ `lambertw(z0, tol=1e-5)` computes the lambertw function of `z0` on the zero branch. The code is a direct port of the zero branch of the [scipy version][lambertw]. 
 
 ## Why do we care about Wasserstein adversarial examples? 
 While much work in adversarial examples research has focused on norm-bounded perturbations, these types 
@@ -43,7 +45,7 @@ generated within this ball have perturbations that reflect the actual content an
 </figcaption>
 </figure>
 
-We derived a fast, modified [sinkhorn iteration][https://arxiv.org/abs/1306.0895] that solves the projection problem onto the Wasserstein ball, and restrict our transport plans to local regions to make this tractable for image datasets. The resulting algorithm is fast enough to be run as a subroutine within a PGD adversary, and furthermore within an adversarial training loop. For CIFAR10 classifiers, we find that an adversarial radius of 0.1 is enough to fool the classifier 97% of the time (equivalent to allowing the adversary to move 10\% of the mass one pixel), when restricted to local 5 by 5 transport plans. The main experimental results in the paper can be summarized in the following table. 
+We derived a fast, modified [sinkhorn iteration][sinkhorn] that solves the projection problem onto the Wasserstein ball, and restrict our transport plans to local regions to make this tractable for image datasets. The resulting algorithm is fast enough to be run as a subroutine within a PGD adversary, and furthermore within an adversarial training loop. For CIFAR10 classifiers, we find that an adversarial radius of 0.1 is enough to fool the classifier 97% of the time (equivalent to allowing the adversary to move 10\% of the mass one pixel), when restricted to local 5 by 5 transport plans. The main experimental results in the paper can be summarized in the following table. 
 
 |          | CIFAR10 Acc | CIFAR10 Adv Acc (0.1) | MNIST Acc | MNIST Adv Acc (1.0) |
 | --------:| ----------:|----------:| ---------:| ------------:|
