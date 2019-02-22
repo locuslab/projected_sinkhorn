@@ -42,7 +42,7 @@ generated within this ball have perturbations that reflect the actual content an
 
 We derived a fast, modified [sinkhorn iteration][sinkhorn] that solves the projection problem onto the Wasserstein ball, and restrict our transport plans to local regions to make this tractable for image datasets. The resulting algorithm is fast enough to be run as a subroutine within a PGD adversary, and furthermore within an adversarial training loop. For CIFAR10 classifiers, we find that an adversarial radius of 0.1 is enough to fool the classifier 97% of the time (equivalent to allowing the adversary to move 10\% of the mass one pixel), when restricted to local 5 by 5 transport plans. The main experimental results in the paper can be summarized in the following table. 
 
-|          | CIFAR10 Acc | CIFAR10 Adv Acc (0.1) | MNIST Acc | MNIST Adv Acc (1.0) |
+|          | CIFAR10 Acc | CIFAR10 Adv Acc (eps=0.1) | MNIST Acc | MNIST Adv Acc (eps=1.0) |
 | --------:| ----------:|----------:| ---------:| ------------:|
 | Standard     |       95% |      97% |     99% |          4% |
 | l-inf robust |       66% |      61% |     98% |         48% |
