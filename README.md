@@ -2,7 +2,8 @@
 
 *A repository that implements the projected sinkhorn algorithm, and applies it towards generating Wasserstein adversarial examples. Created by [Eric Wong](https://riceric22.github.io), and joint work with Frank R. Schmidt and [Zico Kolter](http://zicokolter.com). See our paper on arXiv [here][paper].*
 
-[paper]: https://arxiv.org/abs/1711.00851
+[paper]: http://arxiv.org/abs/1902.07906
+
 [lambertw]: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.special.lambertw.html
 [sinkhorn]: https://arxiv.org/abs/1306.0895
 
