@@ -45,7 +45,7 @@ We derived a fast, modified [sinkhorn iteration][sinkhorn] that solves the proje
 
 |          | CIFAR10 Acc | CIFAR10 Adv Acc (eps=0.1) | MNIST Acc | MNIST Adv Acc (eps=1.0) |
 | --------:| ----------:|----------:| ---------:| ------------:|
-| Standard     |       95% |      97% |     99% |          4% |
+| Standard     |       95% |       3% |     99% |          4% |
 | l-inf robust |       66% |      61% |     98% |         48% |
 | Adv training |       81% |      76% |     97% |         86% |
 | Binarization |         - |        - |     99% |         14% |
