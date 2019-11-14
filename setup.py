@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='projected_sinkhorn',
-    version='0.1',
+    version='0.2',
     description="A library implementing the projected sinkhorn iteration for PyTorch",
     author='Eric Wong',
     author_email='ericwong@cs.cmu.edu',
