@@ -187,7 +187,10 @@ def log_sinkhorn(X, Y, C, epsilon, lam, verbose=False, plan=False,
         I_nonzero_ = unsqueeze3(I_nonzero).expand_as(alpha)
 
         def eval_obj(alpha, exp_alpha, psi, K): 
-            return (-psi*epsilon - bdot(torch.clamp(alpha,max=MAX_FLOAT),X) - bdot(exp_alpha, mm(K, exp_beta)))/lam
+            return -psi*epsilon - bdot(torch.clamp(alpha,max=MAX_FLOAT),X) - bdot(exp_alpha, mm(K, exp_beta))
+
+        def eval_z(alpha, exp_alpha, psi, K): 
+            return exp_beta*mm(K, exp_alpha)
 
         psi = X.new_ones(*size[:-3])
         K = torch.exp(-unsqueeze3(psi)*C - 1)
