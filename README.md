@@ -9,6 +9,7 @@
 
 ## News
 + 02/21/2019 - Initial release (v0.1) with preprint. 
++ 10/23/2019 - A certified defense against the Wasserstein attack using randomized smoothing [here](https://github.com/alevine0/wasserstein_smoothing) by Alexander Levine and Soheil Feizi
 
 ## What is in this repository? 
 + An implementation of the Projected Sinkhorn Iteration for images described in our [paper][paper].
