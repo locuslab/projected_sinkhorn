@@ -11,6 +11,6 @@ setup(
     url='https://github.com/locuslab/projected_sinkhorn',
     packages=['projected_sinkhorn'],
     install_requires=[
-        'torch==1.0'
+        'torch==2.2.0'
     ]
 )
